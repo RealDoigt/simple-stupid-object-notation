@@ -30,7 +30,7 @@ pet
 food
 ;
 ```
-You'll probably notice that the names of properties can have spaces in them. It's also technically possible for object names, but it is not recommended. At least, not now because the current implementation has a major oversight in that regard which limits the cases when you can use that feature for object names. Do note however that trailing white spaces will be removed. This is to allow a minimum of code style if the user wish to like these:
+You'll probably notice that the names of properties can have spaces in them. It's also technically possible for object names, but it is not recommended. At least, not now because the current implementation has a major oversight in that regard which limits the cases when you can use that feature for object names. Do note however that trailing white spaces will be removed. This is to allow a minimum of code style if the user wishes to have one like these examples show:
 ```sson
 person
 .name      = jane
