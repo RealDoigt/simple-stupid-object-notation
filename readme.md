@@ -1,4 +1,4 @@
-==== SSON ====
+#### SSON ####
 SSON stands for either super simple object notation or simple stupid object notation, whatever you prefer.
 SSON was made for the specific needs I had for helping me create game entities in one of my projects.
 My specific needs were:
@@ -10,7 +10,7 @@ My specific needs were:
 
 SSON is not a very powerful force of nature like JSON, CSON, YAML, XML and others. However, SSON does the things it was designed for well and it might appeal to certain use cases like scripting object values for a level in a game or services that are so small and simple in the data they use that more powerful features are not needed; SSON was created for simple cases.
 
-==== Guide and Examples ====
+#### Guide and Examples ####
 Frankly I don't know what you're doing here, but if you've kept reading that means you might be interested in how it looks like.
 
 First, to create an object, all you have to do is type out its name. Object names may contain anything as long as they don't start with `.` and `#`. However, you're free to include those characters elsewhere in the name. Then you may or may not add properties to that object by typing out their names in front of a `.` and using the `=` to initliaze that property's value. The name of the object and its properties are sperated by newlines. No value may be empty! If you want that value to be empty, don't type it. Don't forget this notation's goal is, in short, to avoid typing where unnecessary. Once you're done, you may either type a `;` on a new line or at the end of the last property to indicate the end of the object. It doesn't work for object names yet, but it's a future goal to make that possible.
@@ -74,5 +74,5 @@ player
 ```
 Finally with this example you'll understand that comments are also a thing in sson. However they're limited; they have to be on their own line. This is to allow as much freedom as possible in names and values. The good thing is they can still be pretty much anywhere; they could be in between two properties for example.
 
-==== Conclusion ====
+#### Conclusion ####
 That's it! Thank you for reading. If you have comments or questions, open an issue. If you spotted a bug, want to offer an implementation in your favourite language or just want to improve this implementation, don't hesitate to make a pull request or place an issue.
