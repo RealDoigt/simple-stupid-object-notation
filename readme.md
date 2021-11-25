@@ -13,7 +13,7 @@ SSON is not a very powerful force of nature like JSON, CSON, YAML, XML and other
 #### Guide and Examples ####
 Frankly I don't know what you're doing here, but if you've kept reading that means you might be interested in how it looks like.
 
-First, to create an object, all you have to do is type out its name. Object names may contain anything as long as they don't start with `.` and `#`. However, you're free to include those characters elsewhere in the name. Then you may or may not add properties to that object by typing out their names in front of a `.` and using the `=` to initialize that property's value. The name of the object and its properties are sperated by newlines. No value may be empty! If you want that value to be empty, don't type it. Don't forget this notation's goal is, in short, to avoid typing where unnecessary. Once you're done, you may either type a `;` on a new line or at the end of the last property to indicate the end of the object. It doesn't work for object names yet, but it's a future goal to make that possible.
+First, to create an object, all you have to do is type out its name. Object names may contain anything as long as they don't start with `default`, `.` and `#`. However, you're free to include those elsewhere in the name. Then you may or may not add properties to that object by typing out their names in front of a `.` and using the `=` to initialize that property's value. The name of the object and its properties are sperated by newlines. No value may be empty! If you want that value to be empty, don't type it. Don't forget this notation's goal is, in short, to avoid typing where unnecessary. Once you're done, you may either type a `;` on a new line or at the end of the last property to indicate the end of the object. It doesn't work for object names yet, but it's a future goal to make that possible.
 
 Here's a couple of examples:
 ```sson
@@ -84,6 +84,8 @@ npc
 .y = 10;
 ```
 It is important to remember that those are line numbers! The reason those line numbers are appended is for easier debugging if you get unexpected values.
+
+It is not possible to have nested objects as I feel that as soon as you need that, you need something more powerful like one of the other notations mentionned earlier. However, if there is demand for it, I'll try to see what I can do to add nested objects to sson.
 
 #### Conclusion ####
 That's it! Thank you for reading. If you have comments or questions, open an issue. If you spotted a bug, want to offer an implementation in your favourite language or just want to improve this implementation, don't hesitate to make a pull request or place an issue.
