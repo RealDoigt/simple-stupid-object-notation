@@ -43,7 +43,7 @@ person
 .job =    construction worker
 .salary = 123467;
 ```
-Now you'll notice another thing is that both of these objects, while having the same name, don't have the same properties. This usage is correct, it is an example of using *implicit default values*. Those default values are expected to be initialized after the data has been interpreted and transformed.
+Now you'll notice another thing is that both of these objects, while having the same name, don't have the same properties. This usage is correct, it is an example of using *implicit default values*. Those default values are expected to be initialized after the data has been interpreted and transformed. To be clear, it is the responsibility of the service which receives the transformed values to initialize them and not the interpreter itself.
 
 However that's not all, there are also *explicit default values*. To define a default value, just type out `default` in front of the object name and all further objects of the same name will inherit those default values if they don't override them:
 ```
