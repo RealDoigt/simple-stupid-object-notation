@@ -1,5 +1,4 @@
 module sson;
-
 import std.stdio;
 import std.string;
 import std.algorithm;
@@ -20,7 +19,7 @@ bool trySetObjects(ref string[string][string] objects, string[] rawObjectData)
     {
         ++lineCount;
 
-        if (str.startsWith("#")) continue;
+        if (str.startsWith("#") || !str.length) continue;
 
         if (str.startsWith("."))
         {
