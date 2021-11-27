@@ -62,7 +62,9 @@ bool trySetObjects(ref string[string][string] objects, string[] rawObjectData)
             {
                 readingObject = true;
                 readingDefault = true;
-                currentObject = str.split(" ")[1].strip;
+
+                // removes the default part of the string.
+                currentObject = str[7..str.length].strip;
             }
 
             else

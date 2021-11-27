@@ -30,7 +30,7 @@ pet
 food
 ;
 ```
-You'll probably notice that the names of properties can have spaces in them. It's also technically possible for object names, but it is not recommended. At least, not now because the current implementation has a major oversight in that regard which limits the cases when you can use that feature for object names. Do note however that trailing white spaces will be removed. This is to allow a minimum of code style if the user wishes to have one like these examples show:
+You'll probably notice that the names of properties can have spaces in them. It's also possible for object names. Do note however that trailing white spaces will be removed. This is to allow a minimum of code style if the user wishes to have one like these examples show:
 ```sson
 person
 .name      = jane
@@ -42,8 +42,14 @@ person
 .age =    30
 .job =    construction worker
 .salary = 123467;
+
+  person
+. name = bobby
+. age  = 60
+. job  = who knows?
+;
 ```
-Now you'll notice another thing is that both of these objects, while having the same name, don't have the same properties. This usage is correct, it is an example of using *implicit default values*. Those default values are expected to be initialized after the data has been interpreted and transformed. To be clear, it is the responsibility of the service which receives the transformed values to initialize them and not the interpreter itself.
+Now you'll notice that these objects, while having the same name, don't have the same properties. This usage is correct, it is an example of using *implicit default values*. Those default values are expected to be initialized after the data has been interpreted and transformed. To be clear, it is the responsibility of the service which receives the transformed values to initialize them and not the interpreter itself.
 
 However that's not all, there are also *explicit default values*. To define a default value, just type out `default` in front of the object name and all further objects of the same name will inherit those default values if they don't override them:
 ```
