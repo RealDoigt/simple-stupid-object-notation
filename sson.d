@@ -62,12 +62,12 @@ bool trySetObjects(ref string[string][string] objects, string[] rawObjectData)
             {
                 readingObject = true;
                 readingDefault = true;
-                currentObject = str.split(" ")[1];
+                currentObject = str.split(" ")[1].strip;
             }
 
             else
             {
-                currentObject = format("%s_%d", str, lineCount);
+                currentObject = format("%s_%d", str.strip, lineCount);
                 readingObject = true;
 
                 if (defaultValues.keys.canFind(str))
