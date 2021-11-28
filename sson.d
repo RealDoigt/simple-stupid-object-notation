@@ -70,7 +70,7 @@ bool trySetObjects(ref string[string][string] objects, string[] rawObjectData)
 
             else
             {
-                cleanStr = str.strip;
+                auto cleanStr = str.strip;
 
                 currentObject = format("%s_%d", cleanStr, lineCount);
                 readingObject = true;
