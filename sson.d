@@ -30,14 +30,15 @@ bool trySetObjects(ref string[string][string] objects, string[] rawObjectData)
             }
 
             auto keyValuePair = str.split("=");
-            keyValuePair[0] = keyValuePair[0].strip;
-            keyValuePair[1] = keyValuePair[1].strip;
 
             if (keyValuePair.length < 2)
             {
                 writeln("expected a value after %s at line %d; property cannot be empty.".format(str, lineCount));
                 return false;
             }
+
+            keyValuePair[0] = keyValuePair[0].strip;
+            keyValuePair[1] = keyValuePair[1].strip;
 
             // remove the dot at the beginning of the attribute
             keyValuePair[0] = keyValuePair[0][1..keyValuePair[0].length];
