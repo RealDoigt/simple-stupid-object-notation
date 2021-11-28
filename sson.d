@@ -37,14 +37,14 @@ bool trySetObjects(ref string[string][string] objects, string[] rawObjectData)
                 return false;
             }
 
-            keyValuePair[0] = keyValuePair[0].strip;
-            keyValuePair[1] = keyValuePair[1].strip;
-
             // remove the dot at the beginning of the attribute
             keyValuePair[0] = keyValuePair[0][1..keyValuePair[0].length];
 
             // removes the ; from the value if it's at the end of it
             if (keyValuePair[1].endsWith(";")) keyValuePair[1] = keyValuePair[1][0..keyValuePair[1].length - 1];
+
+            keyValuePair[0] = keyValuePair[0].strip;
+            keyValuePair[1] = keyValuePair[1].strip;
 
             // put the value in the appropriate hashmap.
             if (!readingDefault) objects[currentObject][keyValuePair[0]] = keyValuePair[1];
