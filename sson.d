@@ -70,15 +70,17 @@ bool trySetObjects(ref string[string][string] objects, string[] rawObjectData)
 
             else
             {
-                currentObject = format("%s_%d", str.strip, lineCount);
+                cleanStr = str.strip;
+
+                currentObject = format("%s_%d", cleanStr, lineCount);
                 readingObject = true;
 
-                if (defaultValues.keys.canFind(str))
+                if (defaultValues.keys.canFind(cleanStr))
                 {
-                    auto attributes = defaultValues[str].keys;
+                    auto attributes = defaultValues[cleanStr].keys;
 
                     foreach (attribute; attributes)
-                        objects[currentObject][attribute] = defaultValues[str][attribute];
+                        objects[currentObject][attribute] = defaultValues[cleanStr][attribute];
                 }
             }
         }
