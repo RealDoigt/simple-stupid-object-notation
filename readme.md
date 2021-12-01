@@ -10,6 +10,8 @@ My specific needs were:
 
 SSON is not a very powerful force of nature like JSON, CSON, YAML, XML and others. However, SSON does the things it was designed for well and it might appeal to certain use cases like scripting object values for a level in a game or services that are so small and simple in the data they use that more powerful features are not needed; SSON was created for simple cases.
 
+SSON is not intended to replace JSON or XML, rather it is meant to not be used at all if you need those or if used along, it is meant to be used only in contexts where the data is entered completely manually and plentiful enough that one would consider it a pain to enter that data in JSON or XML. SSON was designed to be more readable than the above formats, but also especially save typing time, not processing time. If what you need is an alternative to JSON or XML, try CSON or YAML or something else.
+
 #### Guide and Examples ####
 Frankly I don't know what you're doing here, but if you've kept reading that means you might be interested in how it looks like.
 
