@@ -5,7 +5,7 @@ import System.Collections.Generic
 
 static class SSON:
 
-	def trySetObjects(ref objects as Dictionary[of string, Dictionary[of string, string]], rawObjectData as (string)):
+	def TrySetObjects(ref objects as Dictionary[of string, Dictionary[of string, string]], rawObjectData as (string)):
 		
 		objects = Dictionary[of string, Dictionary[of string, string]]();
 		defaultValues = Dictionary[of string, Dictionary[of string, string]]();
