@@ -28,6 +28,9 @@ const trySetObjects = (rawObjectData) => {
         return `expected a value after ${str} at line ${lineCount}; property
         cannot be empty.`;
 
+      if (keyValuePair.length > 2)
+          keyValuePair[1] = keyValuePair.slice(1).join("=");
+
       // remove the dot at the beginning of the attribute
       keyValuePair[0] = keyValuePair[0].slice(1);
 
