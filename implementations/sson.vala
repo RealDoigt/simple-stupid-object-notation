@@ -29,6 +29,9 @@ bool try_set_objects(out HashTable<string, HashTable<string, string>> objects, s
                 return false;
             }
 
+            if (key_value_pair.length > 2)
+                key_value_pair[1] = string.join("=", key_value_pair[1:key_value_pair.length]);
+
             // remove the dot at the beginning of the attribute
             key_value_pair[0] = key_value_pair[0][1:key_value_pair[0].length];
 
