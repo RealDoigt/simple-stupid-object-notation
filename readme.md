@@ -93,7 +93,5 @@ npc
 ```
 It is important to remember that those are line numbers! The reason those line numbers are appended is for easier debugging if you get unexpected values.
 
-It is not possible to have nested objects as I feel that as soon as you need that, you need something more powerful like one of the other notations mentionned earlier. However, if there is demand for it, I'll try to see what I can do to add nested objects to sson.
-
 #### Conclusion ####
 That's it! Thank you for reading. If you have comments or questions, open an issue. If you spotted a bug, want to offer an implementation in your favourite language or just want to improve this implementation, don't hesitate to make a pull request or place an issue.
