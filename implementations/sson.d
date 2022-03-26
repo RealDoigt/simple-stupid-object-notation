@@ -37,6 +37,10 @@ bool trySetObjects(ref string[string][string] objects, string[] rawObjectData)
                 return false;
             }
 
+            // this is a fix for when someone uses another = after the assign
+            for (int i = 2; i < keyValuePair.length; ++i)
+                keyValuePair[1] ~= "=" ~ keyValuePair[i];
+
             // remove the dot at the beginning of the attribute
             keyValuePair[0] = keyValuePair[0][1..keyValuePair[0].length];
 
@@ -47,8 +51,8 @@ bool trySetObjects(ref string[string][string] objects, string[] rawObjectData)
             keyValuePair[1] = keyValuePair[1].strip;
 
             // put the value in the appropriate hashmap.
-            if (!readingDefault) objects[currentObject][keyValuePair[0]] = keyValuePair[1];
-            else defaultValues[currentObject][keyValuePair[0]] = keyValuePair[1];
+            if (readingDefault) defaultValues[currentObject][keyValuePair[0]] = keyValuePair[1];
+            else objects[currentObject][keyValuePair[0]] = keyValuePair[1];
         }
 
         else
