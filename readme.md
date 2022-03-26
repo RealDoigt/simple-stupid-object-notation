@@ -8,7 +8,7 @@ My specific needs were:
 4. No tabulation required.
 5. Easy to debug.
 
-SSON is not a very powerful force of nature like JSON, CSON, YAML, XML and others. However, SSON does the things it was designed for well and it might appeal to certain use cases like scripting object values for a level in a game or services that are so small and simple in the data they use that more powerful features are not needed; SSON was created for simple cases.
+SSON is designed for certain use cases like scripting object values for a level in a game or services that are so small and simple in the data they use that more powerful features are not needed; SSON was created for simple cases. My goal with SSON is to have a data format that takes less time to write data manually. It cannot be compared to JSON nor XML for it seeks to achieve different goals.
 
 SSON is not intended to replace JSON or XML, rather it is meant to not be used at all if you need those or if used along, it is meant to be used only in contexts where the data is entered completely manually and plentiful enough that one would consider it a pain to enter that data in JSON or XML. SSON was designed to be more readable than the above formats, but also especially save typing time, not processing time. If what you need is an alternative to JSON or XML, try CSON or YAML or something else. SSON is closer to a configuration file format on steroids than an alternative to JSON. I think I need to really hammer that point home because I've gotten a lot of comments from people who don't understand what SSON is and perhaps that's my fault for giving it a misleading name and for that I apologize; all I wanted was a cool sounding acronym for my project and yes I regret it now but what's done is done.
 
