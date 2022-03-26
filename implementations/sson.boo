@@ -34,6 +34,9 @@ static class SSON:
 					
 					print "expected a value after $str at line $lineCount; property cannot be empty"
 					return false
+
+                if keyValuePair.Length > 2:
+                    keyValuePair[1] = String.Join("=", keyValuePair[1:])
 				
 				keyValuePair[0] = keyValuePair[0][1:]
 				
