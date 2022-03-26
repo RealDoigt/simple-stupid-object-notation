@@ -29,6 +29,9 @@ def trySetObjects(rawObjectData):
             if len(keyValuePair) < 2:
                 return f"expected a value after {str} at line {lineCount}; property cannot be empty."
 
+            for i = 2 in range(len(keyValuePair)):
+                keyValuePair[1] = f"{keyValuePair[1]}={keyValuePair[i]}"
+
             # remove the dot at the beginning of the attribute
             keyValuePair[0] = keyValuePair[0][1:len(keyValuePair[0])]
 
