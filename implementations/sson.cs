@@ -31,16 +31,13 @@ namespace sson
                         return false;
                     }
 
-                    var keyValuePair = str.Split('=');
+                    var keyValuePair = str.Split("=".ToCharArray(), 2);
 
                     if (keyValuePair.Length < 2)
                     {
                         Error.WriteLine($"expected a value after {str} at line {lineCount}; property cannot be empty");
                         return false;
                     }
-
-                    for (int i = 2; i < keyValuePair.Length; ++i)
-                        keyValuePair[1] = $"{keyValuePair[1]}={keyValuePair[i]}";
 
                     // remove the dot at the beginning of the attribute
                     keyValuePair[0] = keyValuePair[0].Substring(1);
