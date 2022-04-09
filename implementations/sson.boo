@@ -28,15 +28,12 @@ static class SSON:
 					print "$str at line $lineCount is supposed to be a property, however it is cut off from its parent object, you probably misplaced a ; just before that line."
 					return false
 					
-				keyValuePair = str.Split("="[0])
+				keyValuePair = str.Split("=".ToCharArray(), 2)
 				
 				if keyValuePair.Length < 2:
 					
 					print "expected a value after $str at line $lineCount; property cannot be empty"
 					return false
-
-				if keyValuePair.Length > 2:
-					keyValuePair[1] = String.Join("=", keyValuePair[1:])
 				
 				keyValuePair[0] = keyValuePair[0][1:]
 				
