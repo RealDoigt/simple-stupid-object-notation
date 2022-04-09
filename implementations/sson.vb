@@ -30,18 +30,13 @@ Public Module SSON
 					Return False
 				End If
 				
-				Dim keyValuePair = str.Split("=")
+				Dim keyValuePair = str.Split("=".ToCharArray(), 2)
 				
 				If keyValuePair.Length < 2 Then
 					
 					Console.Error.WriteLine("expected a value after {0} at line {1}; property cannot be empty", str, lineCount)
 					Return False
 				End If
-
-				For i = 2 to keyValuePair.Length
-
-                    keyValuePair(1) = String.Format("{0}={1}", keyValuePair(1), keyValuePair(i))
-				Next
 				
 				' remove the dot at the beginning of the attribute
 				keyValuePair(0) = keyValuePair(0).Substring(1)
