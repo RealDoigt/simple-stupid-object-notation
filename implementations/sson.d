@@ -1,20 +1,60 @@
 module sson;
 import std.stdio;
 import std.string;
+//import std.variant;
 import std.algorithm;
 
-bool trySetObjects(ref string[string][string] objects, string[] rawObjectData)
+enum ReadingMode
 {
-    auto readingObject = false, readingDefault = false;
+    objects,
+    defaults,
+    connections,
+    generators,
+    templates,
+    none
+}
+
+bool trySetObjects(out string[string][string] objects, string[] rawObjectData)
+{
+    auto reading = ReadingMode.none;
 
     auto lineCount = 0;
     auto currentObject = "";
 
     string[string][string] defaultValues;
+    string[string][string] connections;
+    string[string][string] generators;
+    string[string][string] templates;
+
+    // put the value in the appropriate hashmap.
+    void insert(string key, string value)
+    {
+        switch (reading)
+        {
+            case ReadingMode.objects:
+                objects[currentObject][key] = value;
+                break;
+
+            case ReadingMode.templates:
+                templates[currentObject][key] = value;
+                break;
+
+            case ReadingMode.connections:
+                connections[currentObject][key] = value;
+                break;
+
+            case ReadingMode.generators:
+                generators[currentObject][key] = value;
+                break;
+
+            default:
+                defaultValues[currentObject][key] = value;
+        }
+    }
 
     // this puts all the attributes and values of an object in a hashmap
     // each object has a unique identifier that goes by its name and the
-    // line # it was declared on, separated by an _ except for default values
+    // line # it was declared on, separated by an _ except for other types
     foreach (str; rawObjectData)
     {
         ++lineCount;
@@ -23,9 +63,9 @@ bool trySetObjects(ref string[string][string] objects, string[] rawObjectData)
 
         if (str.startsWith("."))
         {
-            if (!readingObject)
+            if (reading == ReadingMode.none)
             {
-                writeln("%s at line %d is supposed to be a property, however it is cut off from its parent object. You probably misplaced a ; just before that line.".format(str, lineCount));
+                "%s at line %d is supposed to be a property, however it is cut off from its parent object. You probably misplaced a ; just before that line.".format(str, lineCount).writeln;
                 return false;
             }
 
@@ -33,7 +73,7 @@ bool trySetObjects(ref string[string][string] objects, string[] rawObjectData)
 
             if (keyValuePair.length < 2)
             {
-                writeln("expected a value after %s at line %d; property cannot be empty.".format(str, lineCount));
+                "expected a value after %s at line %d; property cannot be empty.".format(str, lineCount).writeln;
                 return false;
             }
 
@@ -50,50 +90,81 @@ bool trySetObjects(ref string[string][string] objects, string[] rawObjectData)
             keyValuePair[0] = keyValuePair[0].strip;
             keyValuePair[1] = keyValuePair[1].strip;
 
-            // put the value in the appropriate hashmap.
-            if (readingDefault) defaultValues[currentObject][keyValuePair[0]] = keyValuePair[1];
-            else objects[currentObject][keyValuePair[0]] = keyValuePair[1];
+            insert(keyValuePair[0], keyValuePair[1]);
         }
 
         else
         {
-            if (readingObject)
+            if (reading != ReadingMode.none)
             {
-                writeln("expected a ; before line %d".format(lineCount));
+                "expected a ; before line %d".format(lineCount).writeln;
                 return false;
             }
 
-            if (str.startsWith("default"))
+            string cleanStr = "";
+
+            if (str.startsWith("default "))
             {
-                readingObject = true;
-                readingDefault = true;
+                reading = ReadingMode.defaults;
 
                 // removes the default part of the string.
-                currentObject = str[7..str.length].strip;
+                currentObject = str[8..str.length].strip;
+                goto default_exit;
+            }
+
+            else if (str.startsWith("template "))
+            {
+                reading = ReadingMode.templates;
+
+                // removes the template part of the string.
+                currentObject = str[9..str.length].strip;
+                cleanStr = currentObject;
+            }
+
+            else if (str.startsWith("connect "))
+            {
+                reading = ReadingMode.connections;
+
+                // removes the connect part of the string.
+                currentObject = str[8..str.length].strip;
+                cleanStr = currentObject;
+            }
+
+            else if (str.startsWith("generator "))
+            {
+                reading = ReadingMode.generators;
+
+                // removes the generator part of the string.
+                currentObject = str[10..str.length].strip;
+                cleanStr = currentObject;
+
+                insert("line", "%d".format(lineCount));
             }
 
             else
             {
-                auto cleanStr = str.strip;
+                cleanStr = str.strip;
 
+                reading = ReadingMode.objects;
                 currentObject = format("%s_%d", cleanStr, lineCount);
-                readingObject = true;
+            }
 
-                if (defaultValues.keys.canFind(cleanStr))
-                {
-                    auto attributes = defaultValues[cleanStr].keys;
+            if (defaultValues.keys.canFind(cleanStr))
+            {
+                auto attributes = defaultValues[cleanStr].keys;
 
-                    foreach (attribute; attributes)
-                        objects[currentObject][attribute] = defaultValues[cleanStr][attribute];
-                }
+                foreach (attribute; attributes)
+                    insert(attribute, defaultValues[cleanStr][attribute]);
             }
         }
+        default_exit:
 
         if (str.endsWith(";"))
         {
-            if (!readingObject) writeln("redundant ; at line %d".format(lineCount));
-            readingDefault = false;
-            readingObject = false;
+            if (reading == ReadingMode.none)
+                "redundant ; at line %d".format(lineCount).writeln;
+
+            reading = ReadingMode.none;
         }
     }
 
