@@ -15,7 +15,7 @@ SSON is not intended to replace JSON or XML, rather it is meant to not be used a
 #### Guide and Examples ####
 Frankly I don't know what you're doing here, but if you've kept reading that means you might be interested in how it looks like.
 
-First, to create an object, all you have to do is type out its name. Object names may contain anything as long as they don't start with `default`, `.` and `#`. However, you're free to include those elsewhere in the name. Then you may or may not add properties to that object by typing out their names in front of a `.` and using the `=` to initialize that property's value. The name of the object and its properties are sperated by newlines. No value may be empty! If you want that value to be empty, don't type it. Don't forget this notation's goal is, in short, to avoid typing where unnecessary. Once you're done, you may either type a `;` on a new line or at the end of the last property to indicate the end of the object. It doesn't work for object names yet, but it's a future goal to make that possible.
+First, to create an object, all you have to do is type out its name. Object names may contain anything as long as they don't start with `default`, `.` and `#`. However, you're free to include those elsewhere in the name. Then you may or may not add properties to that object by typing out their names in front of a `.` and using the `=` to initialize that property's value. The name of the object and its properties are sperated by newlines. No value may be empty! If you want that value to be empty, don't type it. Don't forget this notation's goal is, in short, to avoid typing where unnecessary. Once you're done, you may either type a `;` on a new line or at the end of the last property to indicate the end of the object. It doesn't work for object names.
 
 Here's a couple of examples:
 ```sson
@@ -27,9 +27,6 @@ person
 pet
 .species = cat
 .annoying = very
-;
-
-food
 ;
 ```
 You'll probably notice that the names of properties can have spaces in them. It's also possible for object names. Do note however that trailing white spaces will be removed. This is to allow a minimum of code style if the user wishes to have one like these examples show:
