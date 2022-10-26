@@ -84,7 +84,7 @@ const trySetObjects = (rawObjectData) => {
         }
       }
 
-    if (str.endsWith(";") {
+    if (str.endsWith(";")) {
         
       readingObject = false;
       readingDefault = false;
