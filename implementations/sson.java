@@ -2,7 +2,9 @@ import java.util.HashMap;
 
 public class sson
 {
-  public static boolean trySetObjects(HashMap<String, HashMap<String, String>> objects, String[] rawObjectData)
+  public class parsingErrorException extends Exception { public ParsingErrorException(String errMsg) { super(errMsg); }}
+
+  public HashMap<String, HashMap<String, String>> trySetObjects(String[] rawObjectData) throws ParsingErrorException
   {
     boolean readingObject = false, readingDefault = false;
 
@@ -10,7 +12,7 @@ public class sson
     var currentObject = "";
 
     var defaultValues = new HashMap<String, HashMap<String, String>>();
-    objects = new HashMap<String, HashMap<String, String>>();
+    var objects = new HashMap<String, HashMap<String, String>>();
 
     for (String str : rawObjectData) {
 
@@ -20,19 +22,15 @@ public class sson
 
       if (str.startsWith(".")) {
 
-        if (!readingObject) {
+        if (!readingObject)
+          throw new parsingErrorException(String.format("%s at line %d is supposed to be a property, however it is cut off from its parent object. You probably misplaced a ; just before that line.\n", str, lineCount));
 
-          System.err.printf("%s at line %d is supposed to be a property, however it is cut off from its parent object. You probably misplaced a ; just before that line.\n", str, lineCount);
-          return false;
-        }
         
         var keyValuePair = str.split("=", 2);
 
-        if (keyValuePair.length < 2) {
+        if (keyValuePair.length < 2)
+          throw new parsingErrorException(String.format("Expected a value after %s at line %d; property cannot be empty.\n", str, lineCount));
 
-          System.err.printf("Expected a value after %s at line %d; property cannot be empty.\n", str, lineCount);
-          return false;
-        }
 
         keyValuePair[0] = keyValuePair[0].substring(1);
 
@@ -67,11 +65,8 @@ public class sson
 
       else {
 
-        if (readingObject) {
-
-          System.err.println("Expected a ; before line " + lineCount);
-          return false;
-        }
+        if (readingObject)
+          throw new ParsingErrorException(String.format("Expected a ; before line " + lineCount));
 
         if (str.startsWith("default")) {
 
@@ -109,6 +104,6 @@ public class sson
       }
     }
 
-    return true;
+    return objects;
   }
 }
