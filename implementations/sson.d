@@ -69,7 +69,7 @@ bool trySetObjects(ref string[string][string] objects, string[] rawObjectData)
                 readingDefault = true;
 
                 // removes the default part of the string.
-                currentObject = str[7..str.length].strip;
+                currentObject = str[7..$].strip;
             }
 
             else
