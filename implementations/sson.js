@@ -80,7 +80,7 @@ const trySetObjects = (rawObjectData) => {
 
             for (const property in defaultValues[cleanStr])
               objects[currentObject][property] = defaultValues[cleanStr][property];
-            }
+          }
         }
       }
 
