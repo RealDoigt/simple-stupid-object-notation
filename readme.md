@@ -106,14 +106,19 @@ alias poison potion
 This has the advantage of being able to carry over the potion default values without overriding them for the poison objects. It also makes the configuration code easier to understand.
 
 ### Multiline values 
-Speaking of making things easier to understand, SSON has multiline values. To have a value span multiple lines, simply add a backslash (`\`) under the field you want to add more lines to and the value will simply continue to that new line:
+Speaking of making things easier to understand, SSON has multiline values. Multiline values are treated as if they were all on the same same line and separated by spaces. To have a value span multiple lines, simply add a backslash (`\`) under the field you want to add more lines to and the value will simply continue to that new line:
 ```sson
 project
 .description = this is a long description which
 \fits better on multiple lines rather than one
 \large line!
+# project.description reads:
+# this is a long description which fits better on multiple lines rather than one large line!
 ```
 A property's name may not be multiline!
+
+### Generating objects
+
 
 ## Important Implementation Details
 The official implementation transforms the values into a hashmap of string hashmaps where each object has its type name appended by the line number it was found on. In the below example, the first object will be called `player_1` and the second  `npc_4`:
