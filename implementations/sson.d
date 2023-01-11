@@ -25,7 +25,7 @@ bool trySetObjects(ref string[string][string] objects, string[] rawObjectData)
         {
             if (!readingObject)
             {
-                writeln("%s at line %d is supposed to be a property, however it is cut off from its parent object. You probably misplaced a ; just before that line.".format(str, lineCount));
+                writefln("%s at line %d is supposed to be a property, however it is cut off from its parent object. You probably misplaced a ; just before that line.", str, lineCount);
                 return false;
             }
 
@@ -33,7 +33,7 @@ bool trySetObjects(ref string[string][string] objects, string[] rawObjectData)
 
             if (keyValuePair.length < 2)
             {
-                writeln("expected a value after %s at line %d; property cannot be empty.".format(str, lineCount));
+                writefln("expected a value after %s at line %d; property cannot be empty.", str, lineCount);
                 return false;
             }
 
@@ -59,7 +59,7 @@ bool trySetObjects(ref string[string][string] objects, string[] rawObjectData)
         {
             if (readingObject)
             {
-                writeln("expected a ; before line %d".format(lineCount));
+                writefln("expected a ; before line %d", lineCount);
                 return false;
             }
 
@@ -91,7 +91,7 @@ bool trySetObjects(ref string[string][string] objects, string[] rawObjectData)
 
         if (str.endsWith(";"))
         {
-            if (!readingObject) writeln("redundant ; at line %d".format(lineCount));
+            if (!readingObject) writefln("redundant ; at line %d", lineCount);
             readingDefault = false;
             readingObject = false;
         }
