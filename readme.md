@@ -8,7 +8,7 @@ My specific needs are:
 4. Easy to read and modify.
 5. Easy to debug.
 
-SSON is designed for certain use cases like scripting object values for a level in a game or services that are so small and simple in the data they use that more powerful features are not needed; SSON was created for simple cases. My goal with SSON is to have a data format that takes less time to write data manually. It cannot be compared to JSON nor XML for it seeks to achieve different goals. If you're here for an alternative to those, check out CSON, YAML, SDLang and KDL instead. 
+As one may come to understand from reading the above, SSON is designed for a very distinct niche from the usual data formats and file configuration formats. The most important goal of SSON, above all else, is to have a data format that takes less time to write data manually. It cannot be compared to neither JSON nor XML for it seeks to achieve different things. If you're here for an alternative to those, check out CSON, YAML, SDLang and KDL instead. 
 
 ## Guide and Examples
 Frankly I don't know what you're doing here, but if you've kept reading that means you might be interested in how it looks like, so lets look at some examples!
