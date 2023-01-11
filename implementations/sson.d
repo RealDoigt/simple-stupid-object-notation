@@ -79,7 +79,7 @@ bool trySetObjects(ref string[string][string] objects, string[] rawObjectData)
                 currentObject = format("%s_%d", cleanStr, lineCount);
                 readingObject = true;
 
-                if (defaultValues.keys.canFind(cleanStr))
+                if (cleanStr in defaultValues)
                 {
                     auto attributes = defaultValues[cleanStr].keys;
 
