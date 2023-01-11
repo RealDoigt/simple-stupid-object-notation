@@ -80,7 +80,7 @@ Finally with this example you'll understand that comments are also a thing in ss
 something 
 
 #### Important Implementation Details ####
-Currently, the implementation transforms the values into a hashmap of string hashmaps where each object has its type name appended by the line number it was found on. In the below example, the first object will be called "player_1" and the second "npc_4":
+The official implementation transforms the values into a hashmap of string hashmaps where each object has its type name appended by the line number it was found on. In the below example, the first object will be called `player_1` and the second  `npc_4`:
 ```sson
 player
 .x = 8
@@ -88,7 +88,7 @@ player
 npc
 .y = 10
 ```
-It is important to remember that those are line numbers! The reason those line numbers are appended is for easier debugging if you get unexpected values.
+It is important to remember that those are line numbers! The reason the data is structured like that is for easier debugging.
 
 #### Conclusion ####
 That's it! Thank you for reading. If you have comments or questions, open an issue. If you spotted a bug, want to offer an implementation in your favourite language or just want to improve this implementation, don't hesitate to make a pull request or place an issue.
