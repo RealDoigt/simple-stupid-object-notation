@@ -55,7 +55,7 @@ bool trySetObjects(out string[string][string] objects, string[] rawObjectData)
             else objects[currentObject][keyValuePair[0]] = keyValuePair[1];
         }
 
-        else
+        else if (str != ";")
         {
             if (readingObject)
             {
