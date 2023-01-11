@@ -81,10 +81,8 @@ bool trySetObjects(ref string[string][string] objects, string[] rawObjectData)
 
                 if (cleanStr in defaultValues)
                 {
-                    auto attributes = defaultValues[cleanStr].keys;
-
-                    foreach (attribute; attributes)
-                        objects[currentObject][attribute] = defaultValues[cleanStr][attribute];
+                    foreach (attribute, value; defaultValues[cleanStr])
+                        objects[currentObject][attribute] = value;
                 }
             }
         }
