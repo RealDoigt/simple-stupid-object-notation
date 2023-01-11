@@ -3,7 +3,7 @@ import std.stdio;
 import std.string;
 import std.algorithm;
 
-bool trySetObjects(ref string[string][string] objects, string[] rawObjectData)
+bool trySetObjects(out string[string][string] objects, string[] rawObjectData)
 {
     auto readingObject = false, readingDefault = false;
 
