@@ -105,7 +105,7 @@ alias poison potion
 ```
 This has the advantage of being able to carry over the potion default values without overriding them for the poison objects. It also makes the configuration code easier to understand.
 
-## Multiline values 
+### Multiline values 
 Speaking of making things easier to understand, SSON has multiline values. To have a value span multiple lines, simply add a backslash (`\`) under the field you want to add more lines to and the value will simply continue to that new line:
 ```sson
 project
