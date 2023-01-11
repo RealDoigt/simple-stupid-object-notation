@@ -75,8 +75,20 @@ player
 ```
 Finally with this example you'll understand that comments are also a thing in sson. However they're limited; they have to be on their own line. This is to allow as much freedom as possible in names and values. The good thing is they can still be pretty much anywhere; they could be in between two properties for example.
 
-something 
+Now, that's not all there is to default values. There are also default values that come from an alias. An alias is something which creates, under a different name, a default profile from another already existing one like so:
+```sson
+default potion
+.recover = 20
+.price = 10
+.name = Potion
+.description = A basic remedy
 
+alias poison potion
+.recover = -5
+.name = Poison
+.description = This one does't help you get better
+```
+This has the advantage of being able to carry over the potion default values without overriding them for the poison objects. It also makes the configuration code easier to understand
 ## Important Implementation Details
 The official implementation transforms the values into a hashmap of string hashmaps where each object has its type name appended by the line number it was found on. In the below example, the first object will be called `player_1` and the second  `npc_4`:
 ```sson
