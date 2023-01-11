@@ -134,7 +134,7 @@ repeat 10 cash wad
 # initialize values
 .x = 0
 .y = 1
-# now the values can be incremented
+# now the values can be changed
 .x + 1
 .y * .5
 
@@ -142,6 +142,11 @@ repeat 10 cash wad
 repeat 4 examples
 .description = Hello, World!
 ```
+The available available operators are:
+* +, - for adding and substracting
+* \*, / for multiplying and dividing
+* ~ for string concatenation
+
 ## Important Implementation Details
 The official implementation transforms the values into a hashmap of string hashmaps where each object has its type name appended by the line number it was found on. In the below example, the first object will be called `player_1` and the second  `npc_4`:
 ```sson
