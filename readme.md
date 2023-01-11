@@ -142,7 +142,6 @@ repeat 10 cash wad
 repeat 4 examples
 .description = Hello, World!
 ```
-
 ## Important Implementation Details
 The official implementation transforms the values into a hashmap of string hashmaps where each object has its type name appended by the line number it was found on. In the below example, the first object will be called `player_1` and the second  `npc_4`:
 ```sson
