@@ -45,7 +45,9 @@ person
 . age  = 60
 . job  = who knows?
 ```
-Now you'll notice that these objects, while having the same name, don't have the same properties. This usage is correct, it is an example of using *implicit default values*. Those default values are expected to be initialized after the data has been interpreted and transformed. To be clear, it is the responsibility of the service which receives the transformed values to initialize them and not the interpreter itself.
+
+### Default Values
+Objects in the previous example, while having the same name, don't have the same properties. It may seem odd, but all of those object definitions are perfectly valid; it is an example of using *implicit default values*. Those default values are expected to be initialized after the data has been interpreted and transformed. To be clear, it is the responsibility of the service which receives the transformed values to initialize them and not the interpreter itself.
 
 However that's not all, there are also *explicit default values*. To define a default value, just type out `default` in front of the object name and all further objects of the same name will inherit those default values if they don't override them:
 ```sson
@@ -98,6 +100,8 @@ project
 \fits better on multiple lines rather than one
 \large line!
 ```
+
+
 ## Important Implementation Details
 The official implementation transforms the values into a hashmap of string hashmaps where each object has its type name appended by the line number it was found on. In the below example, the first object will be called `player_1` and the second  `npc_4`:
 ```sson
