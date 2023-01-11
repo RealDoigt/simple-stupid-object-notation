@@ -138,7 +138,7 @@ repeat 10 cash wad
 .x + 1
 .y * .5
 
-# you can also cho0se to simply copy completely identical objects
+# you can also choose to simply copy completely identical objects
 repeat 4 examples
 .description = Hello, World!
 ```
