@@ -11,8 +11,9 @@ My specific needs are:
 SSON is designed for certain use cases like scripting object values for a level in a game or services that are so small and simple in the data they use that more powerful features are not needed; SSON was created for simple cases. My goal with SSON is to have a data format that takes less time to write data manually. It cannot be compared to JSON nor XML for it seeks to achieve different goals. If you're here for an alternative to those, check out CSON, YAML, SDLang and KDL instead. 
 
 ## Guide and Examples
-Frankly I don't know what you're doing here, but if you've kept reading that means you might be interested in how it looks like.
+Frankly I don't know what you're doing here, but if you've kept reading that means you might be interested in how it looks like, so lets look at some examples!
 
+### Basic Syntax
 First, to create an object, all you have to do is type out its name. Object names may contain anything as long as they don't start with `default`, `.` and `#`. However, you're free to include those elsewhere in the name. Then you may or may not add properties to that object by typing out their names in front of a `.` and using the `=` to initialize that property's value. The name of the object and its properties are sperated by newlines. No value may be empty! If you want that value to be empty, don't type it. Don't forget this notation's goal is, in short, to avoid typing where unnecessary. Once you're done, you may either type a `;` on a new line or at the end of the last property to indicate the end of the object. It doesn't work for object names.
 
 Here's a couple of examples:
@@ -78,17 +79,25 @@ Finally with this example you'll understand that comments are also a thing in ss
 Now, that's not all there is to default values. There are also default values that come from an alias. An alias is something which creates, under a different name, a default profile from another already existing one like so:
 ```sson
 default potion
-.recover = 20
+.potency = 5
 .price = 10
 .name = Potion
 .description = A basic remedy
 
+# default poison objects will also inherit the default values of potion as defined above
 alias poison potion
-.recover = -5
 .name = Poison
-.description = This one does't help you get better
+.description = This one doesn't help you get better
 ```
-This has the advantage of being able to carry over the potion default values without overriding them for the poison objects. It also makes the configuration code easier to understand
+This has the advantage of being able to carry over the potion default values without overriding them for the poison objects. It also makes the configuration code easier to understand.
+
+Speaking of making things easier to understand, SSON has multiline values. To have a value span multiple lines, simply add a backslash (`\`) under the field you want to add more lines to and the value will simply continue to that new line:
+```sson
+project
+.description = this is a long description which
+\fits better on multiple lines rather than one
+\large line!
+```
 ## Important Implementation Details
 The official implementation transforms the values into a hashmap of string hashmaps where each object has its type name appended by the line number it was found on. In the below example, the first object will be called `player_1` and the second  `npc_4`:
 ```sson
