@@ -1,6 +1,6 @@
 Note: This is about SSON 2.0, which isn't backwards compatible with 1.0 and which has implementations in fewer languages
 
-#### SSON ####
+# SSON
 SSON stands for either simple stupid object notation. SSON was made for the specific needs I had for helping me create game entities in one of my projects. I have since kept it evolving according to my needs.
 
 My specific needs are:
@@ -12,7 +12,7 @@ My specific needs are:
 
 SSON is designed for certain use cases like scripting object values for a level in a game or services that are so small and simple in the data they use that more powerful features are not needed; SSON was created for simple cases. My goal with SSON is to have a data format that takes less time to write data manually. It cannot be compared to JSON nor XML for it seeks to achieve different goals. If you're here for an alternative to those, check out CSON, YAML, SDLang and KDL instead. 
 
-#### Guide and Examples ####
+## Guide and Examples
 Frankly I don't know what you're doing here, but if you've kept reading that means you might be interested in how it looks like.
 
 First, to create an object, all you have to do is type out its name. Object names may contain anything as long as they don't start with `default`, `.` and `#`. However, you're free to include those elsewhere in the name. Then you may or may not add properties to that object by typing out their names in front of a `.` and using the `=` to initialize that property's value. The name of the object and its properties are sperated by newlines. No value may be empty! If you want that value to be empty, don't type it. Don't forget this notation's goal is, in short, to avoid typing where unnecessary. Once you're done, you may either type a `;` on a new line or at the end of the last property to indicate the end of the object. It doesn't work for object names.
@@ -79,7 +79,7 @@ Finally with this example you'll understand that comments are also a thing in ss
 
 something 
 
-#### Important Implementation Details ####
+## Important Implementation Details
 The official implementation transforms the values into a hashmap of string hashmaps where each object has its type name appended by the line number it was found on. In the below example, the first object will be called `player_1` and the second  `npc_4`:
 ```sson
 player
@@ -90,5 +90,5 @@ npc
 ```
 It is important to remember that those are line numbers! The reason the data is structured like that is for easier debugging.
 
-#### Conclusion ####
+## Conclusion
 That's it! Thank you for reading. If you have comments or questions, open an issue. If you spotted a bug, want to offer an implementation in your favourite language or just want to improve this implementation, don't hesitate to make a pull request or place an issue.
