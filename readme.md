@@ -143,8 +143,8 @@ repeat 4 examples
 .description = Hello, World!
 ```
 The available available operators are:
-* +, - for adding and substracting
-* \*, / for multiplying and dividing
+* + and - for adding and substracting
+* \* and / for multiplying and dividing
 * ~ for string concatenation
 
 ## Important Implementation Details
