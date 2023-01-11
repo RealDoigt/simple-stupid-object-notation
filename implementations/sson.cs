@@ -73,7 +73,7 @@ public static class SSON
                 }
             }
 
-            else
+            else if (str != ";")
             {
                 if (readingObject)
                 {

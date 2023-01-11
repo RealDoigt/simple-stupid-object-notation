@@ -63,7 +63,7 @@ public class sson
         }
       }
 
-      else {
+      else if (str != ";") {
 
         if (readingObject)
           throw new ParsingErrorException(String.format("Expected a ; before line " + lineCount));

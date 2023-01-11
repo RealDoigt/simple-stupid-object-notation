@@ -57,7 +57,7 @@ def trySetObjects(rawObjectData):
 
                 objects[currentObject][keyValuePair[0]] = keyValuePair[1]
 
-        else:
+        elif str != ";":
 
             if readingObject:
                 return f"expected a ; before line {lineCount}"

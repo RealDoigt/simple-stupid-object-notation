@@ -54,7 +54,7 @@ const trySetObjects = (rawObjectData) => {
       }
     }
 
-    else {
+    else if (str !== ";") {
 
         if (readingObject) return `expected a ; before line ${lineCount}`;
 

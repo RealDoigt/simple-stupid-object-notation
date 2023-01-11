@@ -83,7 +83,7 @@ Public Module SSON
 					End If
 				End If
 				
-			Else
+			Else If str <> ";" Then
 				
 				If readingObject Then
 					

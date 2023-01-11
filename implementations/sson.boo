@@ -64,7 +64,7 @@ static class SSON:
 						
 					else:
 						objects[currentObject][keyValuePair[0]] = keyValuePair[1]
-			else:
+			elif str != ";":
 				
 				if readingObject:
 					

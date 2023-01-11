@@ -56,7 +56,7 @@
                 }
             }
 
-            else
+            else if (str <> ';')
             {
                 if ($reading_object) return "expected a ; before line $line_count";
 

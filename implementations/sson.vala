@@ -60,7 +60,7 @@ bool try_set_objects(out HashTable<string, HashTable<string, string>> objects, s
             }
         }
 
-        else
+        else if (str != ";")
         {
             if (reading_object)
             {

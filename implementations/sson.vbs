@@ -89,7 +89,7 @@ Function TrySetObjects(ByRef objects, rawObjectData)
 						End If
 					End If
 					
-				Else
+				Else If str <> ";" Then
 					
 					If readingObject Then
 					
