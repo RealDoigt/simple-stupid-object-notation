@@ -1,16 +1,16 @@
+Note: This is about SSON 2.0, which isn't backwards compatible with 1.0 and which has implementations in fewer languages
+
 #### SSON ####
-SSON stands for either super simple object notation or simple stupid object notation, whatever you prefer.
-SSON was made for the specific needs I had for helping me create game entities in one of my projects.
-My specific needs were:
-1. Convenient to use for manually typing data into a file.
-2. Allow for default values to exist.
-3. Easy to read and modify.
-4. No tabulation required.
+SSON stands for either simple stupid object notation. SSON was made for the specific needs I had for helping me create game entities in one of my projects. I have since kept it evolving according to my needs.
+
+My specific needs are:
+1. Type less.
+2. Data polymorphism.
+3. Data generation.
+4. Easy to read and modify.
 5. Easy to debug.
 
-SSON is designed for certain use cases like scripting object values for a level in a game or services that are so small and simple in the data they use that more powerful features are not needed; SSON was created for simple cases. My goal with SSON is to have a data format that takes less time to write data manually. It cannot be compared to JSON nor XML for it seeks to achieve different goals.
-
-SSON is not intended to replace JSON or XML, rather it is meant to not be used at all if you need those or if used along, it is meant to be used only in contexts where the data is entered completely manually and plentiful enough that one would consider it a pain to enter that data in JSON or XML. SSON was designed to be more readable than the above formats, but also especially save typing time, not processing time. If what you need is an alternative to JSON or XML, try CSON or YAML or something else. SSON is closer to a configuration file format on steroids than an alternative to JSON. I think I need to really hammer that point home because I've gotten a lot of comments from people who don't understand what SSON is and perhaps that's my fault for giving it a misleading name and for that I apologize; all I wanted was a cool sounding acronym for my project and yes I regret it now but what's done is done.
+SSON is designed for certain use cases like scripting object values for a level in a game or services that are so small and simple in the data they use that more powerful features are not needed; SSON was created for simple cases. My goal with SSON is to have a data format that takes less time to write data manually. It cannot be compared to JSON nor XML for it seeks to achieve different goals. If you're here for an alternative to those, check out CSON, YAML, SDLang and KDL instead. 
 
 #### Guide and Examples ####
 Frankly I don't know what you're doing here, but if you've kept reading that means you might be interested in how it looks like.
@@ -22,31 +22,29 @@ Here's a couple of examples:
 person
 .name = john
 .last name = doe
-.age = 800;
+.age = 800
 
 pet
 .species = cat
 .annoying = very
-;
 ```
 You'll probably notice that the names of properties can have spaces in them. It's also possible for object names. Do note however that trailing white spaces will be removed. This is to allow a minimum of code style if the user wishes to have one like these examples show:
 ```sson
 person
 .name      = jane
 .last name = doe
-.age       = 25;
+.age       = 25
 
 person
 .name =   bob
 .age =    30
 .job =    construction worker
-.salary = 123467;
+.salary = 123467
 
   person
 . name = bobby
 . age  = 60
 . job  = who knows?
-;
 ```
 Now you'll notice that these objects, while having the same name, don't have the same properties. This usage is correct, it is an example of using *implicit default values*. Those default values are expected to be initialized after the data has been interpreted and transformed. To be clear, it is the responsibility of the service which receives the transformed values to initialize them and not the interpreter itself.
 
@@ -55,38 +53,40 @@ However that's not all, there are also *explicit default values*. To define a de
 default player
 .health = 20
 .armor = 0
-.ammo = 5;
+.ammo = 5
 
 # this player will have 20 health, 0 armor and 5 ammo
 player
 .x = 5
-.y = 2;
+.y = 2
 
 # this player won't have 0 armour because it overrides the property
 player
 .y = 1
 .x = 0
-.armor = 10;
+.armor = 10
 
 # it is also possible to change the default values midway
 default player
-.health = 10;
+.health = 10
 
 # this player won't have 20 health, but it'll have 0 armor and 5 ammo
 player
 .x = 6
-.y = 12;
+.y = 12
 ```
 Finally with this example you'll understand that comments are also a thing in sson. However they're limited; they have to be on their own line. This is to allow as much freedom as possible in names and values. The good thing is they can still be pretty much anywhere; they could be in between two properties for example.
+
+something 
 
 #### Important Implementation Details ####
 Currently, the implementation transforms the values into a hashmap of string hashmaps where each object has its type name appended by the line number it was found on. In the below example, the first object will be called "player_1" and the second "npc_4":
 ```sson
 player
-.x = 8;
+.x = 8
 
 npc
-.y = 10;
+.y = 10
 ```
 It is important to remember that those are line numbers! The reason those line numbers are appended is for easier debugging if you get unexpected values.
 
