@@ -3,12 +3,12 @@ import std.stdio;
 import std.string;
 import std.algorithm;
 
-bool trySetObjects(ref string[string][string] objects, string[] rawObjectData)
+bool trySetObjects(out string[string][string] objects, string[] rawObjectData)
 {
-    auto readingObject = false, readingDefault = false;
-
-    auto lineCount = 0;
-    auto currentObject = "";
+    auto readingObject  = false, 
+         readingDefault = false, 
+         lineCount      = 0,
+         currentObject  = "";
 
     string[string][string] defaultValues;
 
@@ -25,7 +25,7 @@ bool trySetObjects(ref string[string][string] objects, string[] rawObjectData)
         {
             if (!readingObject)
             {
-                writeln("%s at line %d is supposed to be a property, however it is cut off from its parent object. You probably misplaced a ; just before that line.".format(str, lineCount));
+                writefln("%s at line %d is supposed to be a property, however it is cut off from its parent object. You probably misplaced a ; just before that line.", str, lineCount);
                 return false;
             }
 
@@ -33,7 +33,7 @@ bool trySetObjects(ref string[string][string] objects, string[] rawObjectData)
 
             if (keyValuePair.length < 2)
             {
-                writeln("expected a value after %s at line %d; property cannot be empty.".format(str, lineCount));
+                writefln("expected a value after %s at line %d; property cannot be empty.", str, lineCount);
                 return false;
             }
 
@@ -55,11 +55,11 @@ bool trySetObjects(ref string[string][string] objects, string[] rawObjectData)
             else objects[currentObject][keyValuePair[0]] = keyValuePair[1];
         }
 
-        else
+        else if (str != ";")
         {
             if (readingObject)
             {
-                writeln("expected a ; before line %d".format(lineCount));
+                writefln("expected a ; before line %d", lineCount);
                 return false;
             }
 
@@ -79,19 +79,17 @@ bool trySetObjects(ref string[string][string] objects, string[] rawObjectData)
                 currentObject = format("%s_%d", cleanStr, lineCount);
                 readingObject = true;
 
-                if (defaultValues.keys.canFind(cleanStr))
+                if (cleanStr in defaultValues)
                 {
-                    auto attributes = defaultValues[cleanStr].keys;
-
-                    foreach (attribute; attributes)
-                        objects[currentObject][attribute] = defaultValues[cleanStr][attribute];
+                    foreach (attribute, value; defaultValues[cleanStr])
+                        objects[currentObject][attribute] = value;
                 }
             }
         }
 
         if (str.endsWith(";"))
         {
-            if (!readingObject) writeln("redundant ; at line %d".format(lineCount));
+            if (!readingObject) writefln("redundant ; at line %d", lineCount);
             readingDefault = false;
             readingObject = false;
         }
