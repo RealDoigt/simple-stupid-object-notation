@@ -5,10 +5,10 @@ import std.algorithm;
 
 bool trySetObjects(out string[string][string] objects, string[] rawObjectData)
 {
-    auto readingObject = false, readingDefault = false;
-
-    auto lineCount = 0;
-    auto currentObject = "";
+    auto readingObject  = false, 
+         readingDefault = false, 
+         lineCount      = 0,
+         currentObject  = "";
 
     string[string][string] defaultValues;
 
