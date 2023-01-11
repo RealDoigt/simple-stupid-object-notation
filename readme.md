@@ -14,7 +14,7 @@ SSON is designed for certain use cases like scripting object values for a level 
 Frankly I don't know what you're doing here, but if you've kept reading that means you might be interested in how it looks like, so lets look at some examples!
 
 ### Basic Syntax
-First, to create an object, all you have to do is type out its name. Object names may contain anything as long as they don't start with `alias`, `default`, `repeat`, `.` and `#`. However, you're free to include those elsewhere in the name. Then you may or may not add properties to that object by typing out their names in front of a `.` and using the `=` to initialize that property's value. The name of the object and its properties are sperated by newlines. No value may be empty! If you want that value to be empty, don't type it. Don't forget this notation's goal is, in short, to avoid typing where unnecessary. Once you're done, you may either type a `;` on a new line or at the end of the last property to indicate the end of the object. It doesn't work for object names.
+First, to create an object, all you have to do is type out its name. Object names may contain anything as long as they don't start with `alias`, `default`, `repeat`, `.` and `#`. However, you're free to include those elsewhere in the name. Then you can add properties to that object by typing out their names in front of a `.` and using the `=` to initialize that property's value. The name of the object and its properties are sperated by newlines. No value may be empty! If you want that value to be empty, don't type it. Don't forget this notation's goal is, in short, to type less. Once you're done, you may go on to next object.
 
 Here's a couple of examples:
 ```sson
@@ -46,6 +46,19 @@ person
 . job  = who knows?
 ```
 
+Comments are also a thing in sson. However they're limited; they have to be on their own line. This is to allow as much freedom as possible in names and values. The good thing is they can still be pretty much anywhere; they could be in between two properties for example.
+
+```sson
+# this is a comment
+my object
+# this is also a comment
+.some property = some value
+
+my other object
+.a property = # this is not a comment
+# A comment between two properties!
+.another property = Hello, World!
+```
 ### Default Values
 Objects in the previous example, while having the same name, don't have the same properties. It may seem odd, but all of those object definitions are perfectly valid; it is an example of using *implicit default values*. Those default values are expected to be initialized after the data has been interpreted and transformed. To be clear, it is the responsibility of the service which receives the transformed values to initialize them and not the SSON interpreter itself.
 
@@ -76,7 +89,6 @@ player
 .x = 6
 .y = 12
 ```
-Finally with this example you'll understand that comments are also a thing in sson. However they're limited; they have to be on their own line. This is to allow as much freedom as possible in names and values. The good thing is they can still be pretty much anywhere; they could be in between two properties for example.
 
 Now, that's not all there is to default values. There are also default values that come from an alias. An alias is something which creates, under a different name, a default profile from another already existing one like so:
 ```sson
