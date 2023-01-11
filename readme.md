@@ -1,4 +1,4 @@
-Note: This is about SSON 2.0, which isn't backwards compatible with 1.0
+##### Note: This is about SSON 2.0, which isn't backwards compatible with 1.0
 
 # SSON
 SSON stands for either **S**imple **S**tupid **O**bject **N**otation. SSON was made for the specific needs I had for helping me create game entities in one of my projects. I have since kept it evolving according to my needs.
