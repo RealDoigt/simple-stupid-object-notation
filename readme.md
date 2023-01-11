@@ -11,8 +11,6 @@ My specific needs are:
 As one may come to understand from reading the above, SSON is designed for a very distinct niche from the usual data formats and file configuration formats. The most important goal of SSON, above all else, is to have a data format that takes less time to write data manually. It cannot be compared to neither JSON nor XML for it seeks to achieve different things. If you're here for an alternative to those, check out CSON, YAML, SDLang and KDL instead. 
 
 ## Guide and Examples
-Frankly I don't know what you're doing here, but if you've kept reading that means you might be interested in how it looks like, so lets look at some examples!
-
 ### Basic Syntax
 First, to create an object, all you have to do is type out its name. Object names may contain anything as long as they don't start with `alias`, `default`, `repeat`, `.` and `#`. However, you're free to include those elsewhere in the name. Then you can add properties to that object by typing out their names in front of a `.` and using the `=` to initialize that property's value. The name of the object and its properties are sperated by newlines. No value may be empty! If you want that value to be empty, don't type it. Don't forget this notation's goal is, in short, to type less. Once you're done, you may go on to next object.
 
@@ -118,7 +116,32 @@ project
 A property's name may not be multiline!
 
 ### Generating objects
+The `repeat` keyword can be used to repeat objects that have the same data many times. It also allows you to change the value of a property between each iteration using simple arithmetics or string concatenation. When using arithmetic operators, the interpreter treats all numbers as a double-precision floating-point number (binary64 format).
 
+To use the repeat keyword, type `repeat`, the number of times it is repeated then the object name. If the object name has a defined default profile, the repeated objects will inherit from it. If there is no default set, then the values must be initalised within the repeat definition.
+```sson
+default pistol ammo
+.qty = 17
+.x = 10
+.y = 15
+
+# clones the pistol ammo 3 times in a diagonal line
+repeat 3 pistol ammo
+.x + 10
+.y - 5
+
+repeat 10 cash wad
+# initialize values
+.x = 0
+.y = 1
+# now the values can be incremented
+.x + 1
+.y * .5
+
+# you can also chose to simply copy completely identical objects
+repeat 4 examples
+.description = Hello, World!
+```
 
 ## Important Implementation Details
 The official implementation transforms the values into a hashmap of string hashmaps where each object has its type name appended by the line number it was found on. In the below example, the first object will be called `player_1` and the second  `npc_4`:
