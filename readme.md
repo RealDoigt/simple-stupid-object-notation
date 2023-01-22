@@ -103,18 +103,6 @@ alias poison potion
 ```
 This has the advantage of being able to carry over the potion default values without overriding them for the poison objects. It also makes the configuration code easier to understand.
 
-### Multiline values 
-Speaking of making things easier to understand, SSON has multiline values. Multiline values are treated as if they were all on the same same line and separated by spaces. To have a value span multiple lines, simply add a backslash (`\`) under the field you want to add more lines to and the value will simply continue to that new line:
-```sson
-project
-.description = this is a long description which
-\fits better on multiple lines rather than one
-\large line!
-# project.description reads:
-# this is a long description which fits better on multiple lines rather than one large line!
-```
-A property's name may not be multiline!
-
 ### Generating objects
 The `repeat` keyword can be used to repeat objects that have the same data many times. It also allows you to change the value of a property between each iteration using simple arithmetics or string concatenation. When using arithmetic operators, the interpreter treats all numbers as a double-precision floating-point number (binary64 format).
 
