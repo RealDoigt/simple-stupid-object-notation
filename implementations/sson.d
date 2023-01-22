@@ -51,7 +51,33 @@ bool trySetObjects(out string[string][string] objects, string[] rawObjectData)
                 // removes the default part of the string.
                 currentObject = str[7..$].strip;
             }
-
+            
+            else if (str.startsWith("alias"))
+            {
+                auto defaultValueToCopy = "";
+                
+                foreach (value; defaultValues.keys)
+                    if (str.endsWith(value))
+                    {
+                        defaultValueToCopy = value;
+                        break;
+                    }
+                    
+                if (!defaultValueToCopy.length)
+                {
+                    writefln("couldn't match %s with an extant default object at line %d.", str, line);
+                    return false;
+                }
+                
+                readingDefault = true;
+                
+                // removes the alias and aliased default parts of the string
+                currentObject = str[5..$ - defaultValueToCopy.length].strip;
+                
+                foreach (attribute, value; defaultValues[cleanStr])
+                    defaultValues[currentObject][attribute] = value;
+            }
+            
             else
             {
                 auto cleanStr = str.strip;
