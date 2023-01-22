@@ -104,6 +104,8 @@ alias poison potion
 This has the advantage of being able to carry over the potion default values without overriding them for the poison objects. It also makes the configuration code easier to understand.
 
 ### Generating objects
+_note:_ this is in the process of being implemented. It isn't in there yet.
+
 The `repeat` keyword can be used to repeat objects that have the same data many times. It also allows you to change the value of a property between each iteration using simple arithmetics or string concatenation. When using arithmetic operators, the interpreter treats all numbers as a double-precision floating-point number (binary64 format).
 
 To use the repeat keyword, type `repeat`, the number of times it is repeated then the object name. If the object name has a defined default profile, the repeated objects will inherit from it. If there is no default set, then the values must be initalised within the repeat definition.
