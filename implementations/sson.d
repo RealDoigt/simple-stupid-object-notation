@@ -5,16 +5,12 @@ import std.algorithm;
 
 bool trySetObjects(out string[string][string] objects, string[] rawObjectData)
 {
-    auto readingObject  = false, 
-         readingDefault = false, 
+    auto readingDefault = false, 
          lineCount      = 0,
          currentObject  = "";
 
     string[string][string] defaultValues;
-
-    // this puts all the attributes and values of an object in a hashmap
-    // each object has a unique identifier that goes by its name and the
-    // line # it was declared on, separated by an _ except for default values
+    
     foreach (str; rawObjectData)
     {
         ++lineCount;
@@ -23,12 +19,6 @@ bool trySetObjects(out string[string][string] objects, string[] rawObjectData)
 
         if (str.startsWith("."))
         {
-            if (!readingObject)
-            {
-                writefln("%s at line %d is supposed to be a property, however it is cut off from its parent object. You probably misplaced a ; just before that line.", str, lineCount);
-                return false;
-            }
-
             auto keyValuePair = str.split("=");
 
             if (keyValuePair.length < 2)
@@ -44,9 +34,6 @@ bool trySetObjects(out string[string][string] objects, string[] rawObjectData)
             // remove the dot at the beginning of the attribute
             keyValuePair[0] = keyValuePair[0][1..$];
 
-            // removes the ; from the value if it's at the end of it
-            if (keyValuePair[1].endsWith(";")) keyValuePair[1] = keyValuePair[1][0..$ - 1];
-
             keyValuePair[0] = keyValuePair[0].strip;
             keyValuePair[1] = keyValuePair[1].strip;
 
@@ -55,29 +42,48 @@ bool trySetObjects(out string[string][string] objects, string[] rawObjectData)
             else objects[currentObject][keyValuePair[0]] = keyValuePair[1];
         }
 
-        else if (str != ";")
+        else
         {
-            if (readingObject)
-            {
-                writefln("expected a ; before line %d", lineCount);
-                return false;
-            }
-
             if (str.startsWith("default"))
             {
-                readingObject = true;
                 readingDefault = true;
 
                 // removes the default part of the string.
                 currentObject = str[7..$].strip;
             }
-
+            
+            else if (str.startsWith("alias"))
+            {
+                auto defaultValueToCopy = "";
+                
+                foreach (value; defaultValues.keys)
+                    if (str.endsWith(value))
+                    {
+                        defaultValueToCopy = value;
+                        break;
+                    }
+                    
+                if (!defaultValueToCopy.length)
+                {
+                    writefln("couldn't match %s with an extant default object at line %d.", str, lineCount);
+                    return false;
+                }
+                
+                readingDefault = true;
+                
+                // removes the alias and aliased default parts of the string
+                currentObject = str[5..$ - defaultValueToCopy.length].strip;
+                
+                foreach (attribute, value; defaultValues[defaultValueToCopy])
+                    defaultValues[currentObject][attribute] = value;
+            }
+            
             else
             {
                 auto cleanStr = str.strip;
 
                 currentObject = format("%s_%d", cleanStr, lineCount);
-                readingObject = true;
+                readingDefault = false;
 
                 if (cleanStr in defaultValues)
                 {
@@ -85,13 +91,6 @@ bool trySetObjects(out string[string][string] objects, string[] rawObjectData)
                         objects[currentObject][attribute] = value;
                 }
             }
-        }
-
-        if (str.endsWith(";"))
-        {
-            if (!readingObject) writefln("redundant ; at line %d", lineCount);
-            readingDefault = false;
-            readingObject = false;
         }
     }
 
