@@ -65,7 +65,7 @@ bool trySetObjects(out string[string][string] objects, string[] rawObjectData)
                     
                 if (!defaultValueToCopy.length)
                 {
-                    writefln("couldn't match %s with an extant default object at line %d.", str, line);
+                    writefln("couldn't match %s with an extant default object at line %d.", str, lineCount);
                     return false;
                 }
                 
@@ -74,7 +74,7 @@ bool trySetObjects(out string[string][string] objects, string[] rawObjectData)
                 // removes the alias and aliased default parts of the string
                 currentObject = str[5..$ - defaultValueToCopy.length].strip;
                 
-                foreach (attribute, value; defaultValues[cleanStr])
+                foreach (attribute, value; defaultValues[defaultValueToCopy])
                     defaultValues[currentObject][attribute] = value;
             }
             
