@@ -1,0 +1,62 @@
+person
+.name = john
+.last name = doe
+.age = 800
+
+pet
+.species = cat
+.annoying = very
+
+person
+.name      = jane
+.last name = doe
+.age       = 25
+
+person
+.name =   bob
+.age =    30
+.job =    construction worker
+.salary = 123467
+
+  person
+. name = bobby
+. age  = 60
+. job  = who knows?
+
+default player
+.health = 20
+.armor = 0
+.ammo = 5
+
+# this player will have 20 health, 0 armor and 5 ammo
+player
+.x = 5
+.y = 2
+
+# this player won't have 0 armour because it overrides the property
+player
+.y = 1
+.x = 0
+.armor = 10
+
+# it is also possible to change the default values midway
+default player
+.health = 10
+
+# this player won't have 20 health, but it'll have 0 armor and 5 ammo
+player
+.x = 6
+.y = 12
+
+player
+.x = 8
+
+alias npc player
+.health = 5
+.speed = 2
+
+npc
+.y = 10
+
+npc
+.x = 5
