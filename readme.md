@@ -103,40 +103,6 @@ alias poison potion
 ```
 This has the advantage of being able to carry over the potion default values without overriding them for the poison objects. It also makes the configuration code easier to understand.
 
-### Generating objects
-_note:_ this is in the process of being implemented. It isn't in there yet.
-
-The `repeat` keyword can be used to repeat objects that have the same data many times. It also allows you to change the value of a property between each iteration using simple arithmetics or string concatenation. When using arithmetic operators, the interpreter treats all numbers as a double-precision floating-point number (binary64 format).
-
-To use the repeat keyword, type `repeat`, the number of times it is repeated then the object name. If the object name has a defined default profile, the repeated objects will inherit from it. If there is no default set, then the values must be initalised within the repeat definition.
-```sson
-default pistol ammo
-.qty = 17
-.x = 10
-.y = 15
-
-# clones the pistol ammo 3 times in a diagonal line
-repeat 3 pistol ammo
-.x + 10
-.y - 5
-
-repeat 10 cash wad
-# initialize values
-.x = 0
-.y = 1
-# now the values can be changed
-.x + 1
-.y * .5
-
-# you can also choose to simply copy completely identical objects
-repeat 4 examples
-.description = Hello, World!
-```
-The available available operators are:
-* \+ and - for adding and substracting
-* \* and / for multiplying and dividing
-* ~ for string concatenation
-
 ## Important Implementation Details
 The official implementation transforms the values into a hashmap of string hashmaps where each object has its type name appended by the line number it was found on. In the below example, the first object will be called `player_1` and the second  `npc_4`:
 ```sson
