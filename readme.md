@@ -1,5 +1,5 @@
 # SSON
-SSON stands for either **S**imple **S**tupid **O**bject **N**otation. SSON was made for the specific needs I had for helping me create game entities in one of my projects. I have since kept it evolving according to my needs.
+SSON stands for **S**imple **S**tupid **O**bject **N**otation. SSON was made for the specific needs I had for helping me create game entities in one of my projects. I have since kept it evolving according to my needs.
 
 My specific needs are:
 1. Type less.
@@ -12,7 +12,7 @@ As one may come to understand from reading the above, SSON is designed for a ver
 
 ## Guide and Examples
 ### Basic Syntax
-First, to create an object, all you have to do is type out its name. Object names may contain anything as long as they don't start with `alias`, `default`, `repeat`, `.` and `#`. However, you're free to include those elsewhere in the name. Then you can add properties to that object by typing out their names in front of a `.` and using the `=` to initialize that property's value. The name of the object and its properties are sperated by newlines. No value may be empty! If you want that value to be empty, don't type it. Don't forget this notation's goal is, in short, to type less. Once you're done, you may go on to next object.
+First, to create an object, all you have to do is type out its name. Object names may contain anything as long as they don't start with `alias`, `default`, `.` and `#`. However, you're free to include those elsewhere in the name. Then you can add properties to that object by typing out their names in front of a `.` and using the `=` to initialize that property's value. The name of the object and its properties are sperated by newlines. No value may be empty! If you want that value to be empty, don't type it. Don't forget this notation's goal is, in short, to type less. Once you're done, you may go on to next object.
 
 Here's a couple of examples:
 ```sson
