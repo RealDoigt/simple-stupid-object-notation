@@ -109,7 +109,7 @@ bool trySetObjects(out string[string][string] objects, string[] rawObjectData)
                 }
                 
                 readingDefault = true;
-                currentObject = name;
+                currentObject = name[6..$]; // removes the fusion out of the name
                 
                 foreach (object; objectsToFuse)
                     foreach (attribute, value; defaultValues[object])
