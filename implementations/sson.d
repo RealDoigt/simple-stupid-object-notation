@@ -78,6 +78,44 @@ bool trySetObjects(out string[string][string] objects, string[] rawObjectData)
                     defaultValues[currentObject][attribute] = value;
             }
             
+            else if (str.startsWith("fusion"))
+            {
+                string[] objectsToFuse;
+                auto name = str, oldLength = name.length;
+                
+                do
+                {
+                    foreach (key; defaultValues.keys)
+                        if (str.endsWith(key))
+                        {
+                            objectsToFuse ~= key;
+                            name = name[0..$ - key.length];
+                            
+                            break;
+                        }
+                }
+                while (name.length != oldLength);
+                
+                if (objectsToFuse.length < 2)
+                {
+                    writefln("couldn't match %s more than one default object at line %d.", str, lineCount);
+                    return false;
+                }
+                
+                if (!name.length)
+                {
+                    writefln("fusion %s needs a name at line %d", str, lineCount);
+                    return false;
+                }
+                
+                readingDefault = true;
+                currentObject = name;
+                
+                foreach (object; objectsToFuse)
+                    foreach (attribute, value; defaultValues[object])
+                        defaultValues[currentObject][attribute] = value;
+            }
+            
             else
             {
                 auto cleanStr = str.strip;
