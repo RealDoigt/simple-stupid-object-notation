@@ -1,0 +1,9 @@
+{
+	"authors": [
+		"Doigt"
+	],
+	"copyright": "Copyright © 2023, Doigt",
+	"description": "A polymorphic file configuration format optimised for manually typing data",
+	"license": "mit",
+	"name": "simple-stupid-object-notation"
+}
