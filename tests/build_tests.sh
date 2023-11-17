@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ldc2 -g test.d ../implementations/sson.d
+ldc2 -g test.d ../source/sson.d
