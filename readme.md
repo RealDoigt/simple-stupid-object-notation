@@ -10,6 +10,9 @@ My specific needs are:
 
 As one may come to understand from reading the above, SSON is designed for a very distinct niche than the usual data formats and file configuration formats. The most important goal of SSON, above all else, is to have a data format that takes less time to write data manually. It cannot be compared to neither JSON nor XML for it seeks to achieve different things. If you're here for an alternative to those, check out CSON, YAML, SDLang or KDL instead. 
 
+## Implementations
+You can find a list of implementations in other languages [here](implementations.md).
+
 ## Guide and Examples
 ### Basic Syntax
 First, to create an object, all you have to do is type out its name. Object names may contain anything as long as they don't start with `alias`, `default`, `.` and `#`. However, you're free to include those elsewhere in the name. Then you can add properties to that object by typing out their names in front of a `.` and using the `=` to initialize that property's value. The name of the object and its properties are sperated by newlines. No value may be empty! If you want that value to be empty, don't type it. Don't forget this notation's goal is, in short, to type less. Once you're done, you may go on to next object.
@@ -115,4 +118,4 @@ npc
 It is important to remember that those are line numbers! The reason the data is structured like that is for easier debugging.
 
 ## Conclusion
-That's it! Thank you for reading. If you have comments or questions, open an issue. If you spotted a bug, want to offer an implementation in your favourite language or just want to improve this implementation, don't hesitate to make a pull request or place an issue.
+That's it! Thank you for reading. If you have comments or questions, open an issue. If you spotted a bug or just want to improve this implementation, don't hesitate to make a pull request or place an issue.
