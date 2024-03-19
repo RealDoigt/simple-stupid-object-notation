@@ -60,3 +60,22 @@ npc
 
 npc
 .x = 5
+
+default epsilon
+.epsilon = 45
+.armor = 100
+
+fusion ep epsilon player
+.swag = maximum
+
+#fusion pe player epsilon
+#.swag = eh?
+
+epsilon
+.name = Bob
+
+ep
+.name = Alice
+
+pe
+.name = Ciela
