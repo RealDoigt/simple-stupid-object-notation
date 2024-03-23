@@ -81,15 +81,17 @@ bool trySetObjects(out string[string][string] objects, string[] rawObjectData)
             else if (str.startsWith("fusion"))
             {
                 string[] objectsToFuse;
-                auto name = str, oldLength = name.length;
+                // removes the fusion out of the name
+                auto name = str[6..$], oldLength = name.length;
                 
                 do
                 {
                     foreach (key; defaultValues.keys)
-                        if (str.endsWith(key))
+                        if (name.endsWith(key))
                         {
+                            name.writeln;
                             objectsToFuse ~= key;
-                            name = name[0..$ - key.length];
+                            name = name[0..$ - key.length].strip;
                             
                             break;
                         }
@@ -109,7 +111,7 @@ bool trySetObjects(out string[string][string] objects, string[] rawObjectData)
                 }
                 
                 readingDefault = true;
-                currentObject = name[6..$]; // removes the fusion out of the name
+                currentObject = name;
                 
                 foreach (object; objectsToFuse)
                     foreach (attribute, value; defaultValues[object])
